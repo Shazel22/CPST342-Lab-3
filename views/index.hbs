@@ -37,6 +37,12 @@
                            placeholder="Enter quantity (ex. 2)" min="1" step="1"
                            value="{{form.item_count}}" required>
                 </div>
+                <div class="form-group">
+                    <label for="description">Description (Optional)</label>
+                    <input type="text" id="description" name="description" class="form-control"
+                           placeholder="Enter description (ex. Deli Item)" maxlength="100"
+                           value="{{form.description}}">
+                </div>
                 <button type="submit" class="btn btn-primary">Add Item</button>
             </form>
 
