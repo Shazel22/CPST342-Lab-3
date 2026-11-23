@@ -1,0 +1,17 @@
+<!-- Form to update grocery data -->
+            <h2>Enter Grocery Item:</h2>
+            <form action="/update_item" method="POST">
+                <div class="form-group">
+                    <label for="item_name">Grocery item</label>
+                    <input type="text" id="item_name" name="item_name" class="form-control"
+                           placeholder="Enter grocery item (ex. Cereal)" maxlength="100"
+                           value="{{form.item_name}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="item_count">Quantity</label>
+                    <input type="number" id="item_count" name="item_count" class="form-control"
+                           placeholder="Enter quantity (ex. 2)" min="1" step="1"
+                           value="{{form.item_count}}" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Item</button>
+            </form>
