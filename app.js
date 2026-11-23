@@ -37,7 +37,6 @@ function validateItem({ item_name, item_count, description }) {
   if (!name) errors.push('Grocery item name is required.');
   if (name.length > 100) errors.push('Grocery item name must be 100 characters or fewer.');
   if (!Number.isInteger(count) || count < 1) errors.push('Quantity must be a whole number of at least 1.');
-  if (!desc) errors.push('Description is required.');
   if (desc.length > 100) errors.push('Description must be 100 characters or fewer.');
 
   return { errors, item: { item_name: name, item_count: count, description: desc } };
@@ -76,7 +75,7 @@ app.post('/create_item', async (req, res, next) => {
       return await renderIndex(res, { status: 400, errors, form: req.body });
     }
 
-    await dbOperations.createItem(item.item_name, item.item_count);
+    await dbOperations.createItem(item.item_name, item.item_count, item.description);
 
     // Post/Redirect/Get: redirect after a successful POST so refreshing the
     // page does not submit the form a second time.
@@ -116,7 +115,7 @@ app.post('/update_item', async (req, res, next) => {
       return await renderIndex(res, { status: 400, errors: ['Invalid item selected.'] });
     }
 
-    await dbOperations.updateItem(itemID, item.item_name, item.item_count);
+    await dbOperations.updateItem(itemID, item.item_name, item.item_count, item.description);
     res.redirect('/');
   } catch (err) {
     next(err);
