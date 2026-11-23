@@ -48,6 +48,7 @@
                         <tr>
                             <th scope="col">Grocery Item</th>
                             <th scope="col">Quantity</th>
+                            <th scope="col">Description</th>
                             <th scope="col">Modify</th>
                         </tr>
                     </thead>
@@ -56,6 +57,7 @@
                         <tr>
                             <td>{{this.item_name}}</td>
                             <td>{{this.item_count}}</td>
+                            <td>{{this.description}}</td>
                             <td class="actions">
                                 <!-- TODO (Done) (Lab 3 - Step 2): add your Update form/button here -->
                                <!-- Step 5: Changed update form to edit item link -->
@@ -68,7 +70,7 @@
                         </tr>
                     {{else}}
                         <tr>
-                            <td colspan="3" class="text-muted">Your grocery list is empty. Add an item above.</td>
+                            <td colspan="4" class="text-muted">Your grocery list is empty. Add an item above.</td>
                         </tr>
                     {{/each}}
                     </tbody>
