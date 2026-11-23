@@ -58,10 +58,8 @@
                             <td>{{this.item_count}}</td>
                             <td class="actions">
                                 <!-- TODO (Done) (Lab 3 - Step 2): add your Update form/button here -->
-                                <form action="/update_item" method="POST">
-                                    <button name="updaterecord" type="submit" class="btn btn-secondary btn-sm"
-                                            value="{{this.itemID}}">Update</button>
-                                </form>
+                               <!-- Step 5: Changed update form to edit item link -->
+                                <a href="/edit_item/{{this.itemID}}" class="btn btn-secondary btn-sm">Update</a>
                                 <form action="/delete_item" method="POST">
                                     <button name="deleterecord" type="submit" class="btn btn-danger btn-sm"
                                             value="{{this.itemID}}">Delete</button>

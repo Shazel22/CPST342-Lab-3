@@ -98,7 +98,7 @@ app.post('/delete_item', async (req, res, next) => {
   }
 });
 
-// TODO (Lab 3 - Step 4): add your update route(s) here.
+// TODO (Done) (Lab 3 - Step 4): add your update route(s) here.
 // Route that allows me to update a grocery list item
 app.post('/update_item', async (req, res, next) => {
   try {
@@ -113,7 +113,6 @@ app.post('/update_item', async (req, res, next) => {
       return await renderIndex(res, { status: 400, errors: ['Invalid item selected.'] });
     }
 
-    //From create_item route
     await dbOperations.updateItem(itemID, item.item_name, item.item_count);
     res.redirect('/');
   } catch (err) {
@@ -121,6 +120,15 @@ app.post('/update_item', async (req, res, next) => {
   }
 });
 
+
+// Step 5: Route that displays the edit page for one grocery list item
+app.get('/edit_item/:id', async (req, res, next) => {
+  try {
+    res.send('Edit page for item ' + req.params.id);
+  } catch (err) {
+    next(err);
+  }
+});
 
 
 /* ---------------------- Error handling ---------------------- */
