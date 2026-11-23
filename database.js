@@ -32,11 +32,13 @@ const db = new sqlite3.Database(
 );
 
 // Make sure the table exists. IF NOT EXISTS keeps any data already present.
+// Step 6: new column added to the database
 db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS grocery_item (
     itemID     INTEGER PRIMARY KEY AUTOINCREMENT,
     item_name  TEXT    NOT NULL,
-    item_count INTEGER
+    item_count INTEGER,
+    description TEXT  
   )`);
 });
 
