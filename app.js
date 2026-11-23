@@ -28,16 +28,19 @@ app.use(express.urlencoded({ extended: false }));
 
 // Validate grocery form input on the server. Never trust the browser alone:
 // HTML `required`/`min` attributes can be bypassed.
-function validateItem({ item_name, item_count }) {
+function validateItem({ item_name, item_count, description }) {
   const name = typeof item_name === 'string' ? item_name.trim() : '';
   const count = Number(item_count);
+  const desc = typeof description === 'string' ? description.trim() : '';
   const errors = [];
 
   if (!name) errors.push('Grocery item name is required.');
   if (name.length > 100) errors.push('Grocery item name must be 100 characters or fewer.');
   if (!Number.isInteger(count) || count < 1) errors.push('Quantity must be a whole number of at least 1.');
+  if (!desc) errors.push('Description is required.');
+  if (desc.length > 100) errors.push('Description must be 100 characters or fewer.');
 
-  return { errors, item: { item_name: name, item_count: count } };
+  return { errors, item: { item_name: name, item_count: count, description: desc } };
 }
 
 // Validate a record ID coming from a form or URL.
