@@ -110,3 +110,8 @@ The lecture videos listed under week 5 will walk you through how the application
 [MDN - Post/Redirect/Get and HTTP request methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
 
 [OWASP - SQL Injection Prevention (Parameterized Queries)](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
+
+### Submission Information
+Name: SKYE HAZEL
+Course: CPST342 - Lab 3
+Completion Date: November 22nd, 2026
