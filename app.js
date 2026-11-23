@@ -99,7 +99,20 @@ app.post('/delete_item', async (req, res, next) => {
 });
 
 // TODO (Lab 3 - Step 4): add your update route(s) here.
+// Route that allows me to update a grocery list item
+app.post('/update_item', async (req, res, next) => {
+  try {
+    const itemID = parseId(req.body.updaterecord);
+    if (!itemID) {
+      return await renderIndex(res, { status: 400, errors: ['Invalid item selected.'] });
+    }
 
+    await dbOperations.updateItem(itemID, req.body.item_name, req.body.item_count);
+    res.redirect('/');
+  } catch (err) {
+    next(err);
+  }
+});
 /* ---------------------- Error handling ---------------------- */
 
 // 404 - no route matched
