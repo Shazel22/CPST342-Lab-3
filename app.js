@@ -102,17 +102,27 @@ app.post('/delete_item', async (req, res, next) => {
 // Route that allows me to update a grocery list item
 app.post('/update_item', async (req, res, next) => {
   try {
+    // Code reused from create_item route to validate input and update the item 
+    const { errors, item } = validateItem(req.body);
+    if (errors.length) {
+      return await renderIndex(res, { status: 400, errors, form: req.body });
+    }
+    // Code modified from delete_item route to get itemID and update database
     const itemID = parseId(req.body.updaterecord);
     if (!itemID) {
       return await renderIndex(res, { status: 400, errors: ['Invalid item selected.'] });
     }
 
-    await dbOperations.updateItem(itemID, req.body.item_name, req.body.item_count);
+    //From create_item route
+    await dbOperations.updateItem(itemID, item.item_name, item.item_count);
     res.redirect('/');
   } catch (err) {
     next(err);
   }
 });
+
+
+
 /* ---------------------- Error handling ---------------------- */
 
 // 404 - no route matched
