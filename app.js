@@ -124,7 +124,17 @@ app.post('/update_item', async (req, res, next) => {
 // Step 5: Route that displays the edit page for one grocery list item
 app.get('/edit_item/:id', async (req, res, next) => {
   try {
-    res.send('Edit page for item ' + req.params.id);
+    const itemID = parseId(req.params.id);
+      if (!itemID) {
+  return await renderIndex(res, { status: 400, errors: ['Invalid item selected.'] });
+}
+
+const item = await dbOperations.getItemById(itemID);
+if (!item) {
+  return await renderIndex(res, { status: 404, errors: ['That item no longer exists.'] });
+}
+
+res.render('edit', { item });
   } catch (err) {
     next(err);
   }
